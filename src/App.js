@@ -8,29 +8,29 @@ class App extends Component {
       result: null,
       firstNum: null,
       secondNum: null
-    }
+    };
   }
 
   calculate() {
     let { firstNum, secondNum } = this.state;
-    let sum = firstNum + secondNum;
+    let sum = +firstNum + +secondNum;
     this.setState({
       result: sum,
       firstNum: '',
       secondNum: '',
       cost: '',
-      quatity: '',
+      quantity: '',
       taxRate: ''
-    })
+    });
   }
 
   calcTotal() {
     let { cost, quantity, taxRate } = this.state;
     let subTotal = cost * quantity;
-    let tax = subTotal * taxRate;
+    let tax = subTotal * taxRate/100;
     this.setState({
       total: tax + subTotal
-    })
+    });
   }
 
   render() {
@@ -48,7 +48,7 @@ class App extends Component {
           type="number"
           onChange={(e) => this.setState({ secondNum: e.target.value })} />
         <br /><br />
-        <button onClick={() => this.calculate}>Calculate</button>
+        <button onClick={() => this.calculate()}>Calculate</button>
         {
           this.state.result ? (
             <p>Result is {this.state.result}</p>
